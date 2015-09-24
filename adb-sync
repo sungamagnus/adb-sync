@@ -169,7 +169,7 @@ class AdbFileSystem(object):
     # shell's. Too bad printf "%s\n" is not available.
     test_strings = [
         b'(',
-        b'(;  #`ls`$PATH\'"(\\\\\\\\){};!\xc0\xaf\xff\xc2\xbf'
+        #b'(;  #`ls`$PATH\'"(\\\\\\\\){};!\xc0\xaf\xff\xc2\xbf'
     ]
     for test_string in test_strings:
       good = False
@@ -177,6 +177,8 @@ class AdbFileSystem(object):
                                    self.QuoteArgument(test_string)]) as stdout:
         for line in stdout:
           line = line.rstrip(b'\r\n')
+	  #print(test_string)
+	  #print(line)
           if line == test_string:
             good = True
       if not good:
